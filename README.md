@@ -84,6 +84,3 @@ React SPA (Front-end) + Spring Boot WebFlux (Back-end)
 | `/admin/health`    | GET    | AdminHealthController       | API·DB·외부 연동 상태 헬스체크     |
 
 ---
-
-**관통하는 한 문장**  
-사용자 클릭 및 매일 02:00 스케줄러를 통해 로그인부터 계좌 연동, 잔돈 적립, 자동 투자, 포트폴리오 조회까지를 3초 이내에 자동화하는 플랫폼.
