@@ -1,7 +1,41 @@
 # 프로젝트 README
 
 ### 4.1 개발 일정(Gantt Chart)
+```mermaid
+graph LR
+    %% 사용자·인증
+    User[User<br/>(사용자)]
+    InternetBanking[InternetBanking<br/>(인터넷뱅킹)]
+    Institution[Institution<br/>(기관)]
+    
+    %% 계좌·거래·잔돈
+    Account[Account<br/>(계좌)]
+    Transaction[Transaction<br/>(거래)]
+    SpareChange[SpareChange<br/>(잔돈)]
+    
+    %% 투자·관심종목
+    Investment[Investment<br/>(투자)]
+    Stock[Stock<br/>(종목)]
+    Watchlist[Watchlist<br/>(관심종목)]
 
+    %% 관계 정의
+    User --> InternetBanking
+    InternetBanking --> Institution
+
+    User --> Account
+    Account --> Institution
+
+    Account --> Transaction
+    Transaction --> SpareChange
+
+    User --> Investment
+    Investment --> Stock
+    Investment --> Account
+
+    User --> Watchlist
+    Watchlist --> Stock
+
+```
 ```mermaid
 gantt
     title 3조 핀테크 프로젝트 일정(2025-07-19 ~ 07-31)
@@ -10,30 +44,40 @@ gantt
 
     %% ───────────── 기획 ─────────────
     section 기획
-    구성 및 기획               :active, 2025-07-19, 2d
+    구성 및 기획                       :2025-07-19, 2d
 
     %% ────────── 프로토타이핑 ─────────
     section 프로토타이핑
-    CODEF·KIS API 연동 PoC      :2025-07-20, 3d
-    와이어프레임 작성           :2025-07-21, 2d
+    CODEF·KIS API 연동 PoC              :2025-07-20, 3d
+    와이어프레임 작성                   :2025-07-21, 2d
 
     %% ──────────── 주요 제작 ───────────
     section 주요 제작
-    백엔드 핵심 기능 구현       :2025-07-23, 4d
-    프론트엔드 UI 개발          :2025-07-23, 4d
-    통합 테스트 & 디버깅        :2025-07-27, 2d
+    %% 백엔드 세부 작업
+    DB 모델링 & 마이그레이션            :2025-07-23, 1d
+    핵심 API(잔돈·투자·계좌) 구현        :2025-07-24, 2d
+    비동기 처리(Celery) 연동            :2025-07-25, 1d
+    테스트 코드 & 문서화                :2025-07-26, 1d
+
+    %% 프론트엔드 세부 작업
+    Redux(Global State) 세팅            :2025-07-23, 1d
+    주요 화면 컴포넌트 개발             :2025-07-24, 2d
+    API 연동 & 데이터 바인딩            :2025-07-25, 1d
+    실시간 차트·WebSocket 핸들링        :2025-07-26, 1d
+    UI 폴리싱·반응형 개선               :2025-07-27, 1d
+
+    통합 테스트 & 디버깅                :2025-07-27, 2d
 
     %% ───────── 플랫폼 테스트 ─────────
     section 플랫폼 테스트
-    AWS 환경 세팅               :2025-07-26, 1d
-    웹앱 디버깅(배포 환경)      :2025-07-27, 2d
-    인증·보안 설정              :2025-07-28, 1d
+    AWS 환경 세팅                       :2025-07-26, 1d
+    웹앱 디버깅(배포 환경)              :2025-07-27, 2d
+    인증·보안 설정                      :2025-07-28, 1d
 
     %% ───────────── 발표 ─────────────
     section 발표
-    구현·보고서 작성            :2025-07-29, 2d
-    최종발표                   :2025-07-31, 1d
-
+    구현·보고서 작성                    :2025-07-29, 2d
+    최종발표                           :active, 2025-07-31, 1d
 ```
 
 ## 5. 역할 분담
